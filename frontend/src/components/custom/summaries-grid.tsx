@@ -9,7 +9,7 @@ interface ILinkCardProps {
 }
 
 const styles = {
-  card: "relative hover:shadow-lg transition-shadow duration-200 cursor-pointer border border-gray-200",
+  card: "overflow-hidden h-fit relative hover:shadow-lg transition-shadow duration-200 cursor-pointer border border-gray-200",
   cardHeader: "pb-3",
   cardTitle: "text-lg font-semibold text-pink-600 leading-tight line-clamp-2",
   cardContent: "pt-0",
@@ -22,14 +22,14 @@ const styles = {
     prose-ol:list-decimal prose-ol:pl-4 prose-ol:text-sm prose-ol:mb-1 prose-ol:mt-0
     prose-li:text-gray-600 prose-li:text-sm prose-li:mb-0
     [&>*:nth-child(n+4)]:hidden`,
-  grid: "grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6",
+  grid: "grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 items-start",
 };
 
 function LinkCard({ summary }: Readonly<ILinkCardProps>) {
-  const {documentId, title, content } = summary;
+  const { documentId, title, content } = summary;
   return (
-    <Link href={`/dashboard/summaries/${documentId}`}>
-      <Card className={styles.card}>
+    <Card className={styles.card}>
+      <Link href={`/dashboard/summaries/${documentId}`}>
         <CardHeader className={styles.cardHeader}>
           <CardTitle className={styles.cardTitle}>
             {title || "Video Summary"}
@@ -41,8 +41,8 @@ function LinkCard({ summary }: Readonly<ILinkCardProps>) {
           </div>
           <p className="text-pink-500 font-medium text-xs mt-3">Read more →</p>
         </CardContent>
-      </Card>
-    </Link>
+      </Link>
+    </Card>
   );
 }
 
